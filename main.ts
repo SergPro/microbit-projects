@@ -2,7 +2,7 @@ let r_button_count = 0
 input.onButtonPressed(Button.A, function () {
     r_button_count = 0
     music.play(music.stringPlayable("A G A F G A E C5 ", 180), music.PlaybackMode.LoopingInBackground)
-    for (let index = 0; index < 3; index++) {
+    for (let index = 0; index < 4; index++) {
         basic.showLeds(`
             . . # . .
             # # # # #
@@ -20,6 +20,14 @@ input.onButtonPressed(Button.A, function () {
             `)
         control.waitMicros(2000)
     }
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        `)
+    basic.showString("Yes")
     music.stopAllSounds()
     basic.clearScreen()
 })
@@ -32,10 +40,18 @@ input.onButtonPressed(Button.B, function () {
         # . . . #
         # . . . #
         `)
-    basic.showNumber(r_button_count)
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        `)
     r_button_count += 1
+    basic.showString("No")
 })
 input.onGesture(Gesture.Shake, function () {
+    music.play(music.stringPlayable("C D E C D E G E ", 120), music.PlaybackMode.LoopingInBackground)
     for (let index = 0; index < 2; index++) {
         basic.showLeds(`
             . # . # .
@@ -67,12 +83,27 @@ input.onGesture(Gesture.Shake, function () {
             `)
     }
     basic.showLeds(`
-        . . . . .
-        . . . . .
+        # . . . #
+        . # . # .
         . . # . .
+        . # . # .
+        # . . . #
+        `)
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . . . . .
         . . . . .
         . . . . .
         `)
+    basic.showLeds(`
+        # . . . #
+        . # . # .
+        . . # . .
+        . # . # .
+        # . . . #
+        `)
+    music.stopAllSounds()
 })
 basic.forever(function () {
 	
